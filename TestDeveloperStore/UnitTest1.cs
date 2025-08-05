@@ -12,7 +12,7 @@ namespace TestDeveloperStore
         List<Product> listProduct = new List<Product>();
 
         [Theory]
-        [InlineData(9)]
+        [InlineData(5)]
         public void Test_Create_Sale_Above_Four_Product(int quantity)
         {
             // Given
@@ -29,14 +29,14 @@ namespace TestDeveloperStore
             var dataSale = new Sale
             {
                  Customer = "joao",
-                  Quantities = quantity,
+                 Quantities = quantity,
             };
 
 
 
             // when
             SaleProductController saleProductController = new SaleProductController();
-            decimal discountFourProducts = saleProductController.CreateSale(listProduct, dataSale);
+            decimal discountFourProducts = saleProductController.SaleCreated(listProduct, "joao");
 
             //DiscountService discountService = new DiscountService();
             //decimal discountFourProducts = discountService.DiscountAboveFourProducts(listProduct);
@@ -62,7 +62,7 @@ namespace TestDeveloperStore
 
             // when
             SaleProductController saleProductController = new SaleProductController();
-            decimal discountFourProducts = saleProductController.CreateSale(listProduct);
+            decimal discountFourProducts = saleProductController.SaleCreated(listProduct,"Joao");
 
             //DiscountService discountService = new DiscountService();
             //decimal discountFourProducts = discountService.DiscountBeteween_10_20_Products(listProduct);
@@ -77,8 +77,6 @@ namespace TestDeveloperStore
         public void Test_Create_Sale_below_four(int quantity)
         {
             // Given
-
-            // Given
             for (int i = 0; i < quantity; i++)
             {
                 var sale = new Product
@@ -91,11 +89,8 @@ namespace TestDeveloperStore
 
             // when
             SaleProductController saleProductController = new SaleProductController();
-            decimal discountFourProducts = saleProductController.CreateSale(listProduct);
-
-            //DiscountService discountService = new DiscountService();
-            //decimal discountFourProducts = discountService.DiscountBeteween_10_20_Products(listProduct);
-
+            decimal discountFourProducts = saleProductController.SaleCreated(listProduct, "Joao");
+         
             // then
             Assert.Equal(0, discountFourProducts);
         }

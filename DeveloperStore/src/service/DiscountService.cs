@@ -8,8 +8,9 @@ namespace DeveloperStore.src.service
     public class DiscountService
     {
         decimal discount = 0;
+        public decimal totalValue = 0;
 
-        public decimal DiscountAboveFourProducts(List<Product> saleProduct)
+        public Sale DiscountAboveFourProducts(List<Product> saleProduct)
         {
             bool identical = true;
             string beforeKind = saleProduct[0].Kind;
@@ -25,15 +26,21 @@ namespace DeveloperStore.src.service
 
             if (identical)
             {
-                decimal totalValue = SumValues(saleProduct);
+                totalValue = SumValues(saleProduct);
                 discount = ApplyDezPercDiscount(totalValue);
             }
 
-            return discount;
+            var saleTotalDisc = new Sale
+            {
+                FinalTotal = totalValue,
+                Discount = discount
+            };
+
+            return saleTotalDisc;
         }
 
 
-        public decimal DiscountBeteween_10_20_Products(List<Product> saleProduct)
+        public Sale DiscountBeteween_10_20_Products(List<Product> saleProduct)
         {
             string beforeKind = saleProduct[0].Kind;
             int countItems = 0;
@@ -47,14 +54,17 @@ namespace DeveloperStore.src.service
             }
             if (countItems >= 10 && countItems <= 20)
             {
-                decimal totalValue = SumValues(saleProduct);
+                totalValue = SumValues(saleProduct);
                 discount = Apply20PercDiscount(totalValue);
-            }
+            }            
+            
+            var saleTotalDisc = new Sale
+            {
+                FinalTotal = totalValue,
+                Discount = discount
+            };
 
-            DataBaseSale dataBaseSale = new DataBaseSale();
-            dataBaseSale.Input(saleProduct);
-
-            return discount;
+            return saleTotalDisc;           
         }
 
 

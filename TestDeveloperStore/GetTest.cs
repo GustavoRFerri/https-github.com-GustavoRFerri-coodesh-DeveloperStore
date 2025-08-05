@@ -15,7 +15,7 @@ namespace TestDeveloperStore
         public void GetData()
         {
             SaleProductController saleProductController = new SaleProductController();
-            List<Product> lProducts = saleProductController.GetSale();
+            List<Sale> lProducts = saleProductController.GetSale();
 
             // Then
             Assert.NotEmpty(lProducts);

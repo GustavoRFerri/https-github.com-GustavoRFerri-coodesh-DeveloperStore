@@ -6,16 +6,16 @@ namespace DeveloperStore.src.service
 {
     public class SearchProductService
     {
-        public List<Product> GetSale()
+        public List<Sale> GetSale()
         {
             var connectionString = "mongodb://localhost:27017";
             var client = new MongoClient(connectionString);
 
             // Acessar banco e coleção
             var database = client.GetDatabase("Sale");
-            var colecao = database.GetCollection<Product>("Product");
+            var colecao = database.GetCollection<Sale>("Product");
 
-            List<Product> Sle = colecao.Find(new BsonDocument()).ToList();
+            List<Sale> Sle = colecao.Find(new BsonDocument()).ToList();
             //foreach (var prod in Sle)
             //{
             //    Console.WriteLine($"Produto: {prod.Kind} - R$ {prod.Price}");
@@ -27,7 +27,7 @@ namespace DeveloperStore.src.service
             }
             else
             {
-                return new List<Product>();
+                return new List<Sale>();
             }            
         }
     }
