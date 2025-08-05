@@ -32,19 +32,32 @@ namespace DeveloperStore.src.repositories
         }
 
 
+        //public void Input(Sale sale)
+        //{
+        //    try
+        //    {
+        //        _colecao.InsertOne(sale);
+        //        //_colecao.UpdateOne
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ;
+
+        //    }
+
+        //}
+
         public void Input(Sale sale)
         {
             try
             {
-                _colecao.InsertOne(sale);
-                //_colecao.UpdateOne
+                 _colecao.InsertOne(sale);
+                
             }
             catch (Exception ex)
             {
                 ;
-
             }
-
         }
 
 
@@ -89,18 +102,6 @@ namespace DeveloperStore.src.repositories
 
         }
 
-        public async Task Input2(List<Product> produto)
-        {
-            try
-            {
-                //await _colecao.InsertManyAsync(produto);
-            }
-            catch (Exception ex)
-            {
-                ;                
-            }
-            
-            
-        }
+   
     }
 }

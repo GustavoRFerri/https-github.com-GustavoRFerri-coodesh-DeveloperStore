@@ -1,11 +1,12 @@
 ﻿using DeveloperStore.src.Domain;
 using DeveloperStore.src.repositories;
+using DeveloperStore.src.service.@interface;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DeveloperStore.src.service
 {
-    public class DiscountService
+    public class DiscountService : IDiscountService
     {
         decimal discount = 0;
         public decimal totalValue = 0;

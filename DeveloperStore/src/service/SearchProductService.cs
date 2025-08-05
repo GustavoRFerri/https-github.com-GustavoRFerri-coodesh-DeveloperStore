@@ -1,10 +1,11 @@
 ﻿using DeveloperStore.src.Domain;
+using DeveloperStore.src.service.@interface;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DeveloperStore.src.service
 {
-    public class SearchProductService
+    public class SearchProductService : ISearchProductService
     {
         public List<Sale> GetSale()
         {

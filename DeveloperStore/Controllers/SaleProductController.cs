@@ -11,21 +11,19 @@ namespace DeveloperStore.Controllers
     [ApiController]
     [Route("[controller]")]
     public class SaleProductController : ControllerBase
-    {      
-
+    {
         private readonly ILogger<SaleProductController> _logger;
 
         [HttpGet(Name = "GetSale")]
         public List<Sale> GetSale()
         {
             SearchProductService searchProductService = new SearchProductService();
-
             var result = searchProductService.GetSale();
             return result;
         }
 
         [HttpPost]
-        public decimal SaleCreated(List<Product> products, string customer)
+        public async Task<decimal> SaleCreated(List<Product> products, string customer)
         {
             Sale valuesSale;
             DiscountService saleService = new DiscountService();
@@ -80,9 +78,6 @@ namespace DeveloperStore.Controllers
 
             //return valuesSale.Discount;
         }
-
-
-
 
     }
 }

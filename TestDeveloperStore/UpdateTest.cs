@@ -17,8 +17,7 @@ namespace TestDeveloperStore
         [InlineData("68912a3fc3a9d6526c0bf901")]
         public void Test_Change_Sale(string id)
         {
-            // Given
-           
+            // Given           
 
             // when
             SaleProductController saleProductController = new SaleProductController();
@@ -36,7 +35,6 @@ namespace TestDeveloperStore
         public void Test_Cancel_Sale(string id)
         {
             // Given
-
 
             // when
             SaleProductController saleProductController = new SaleProductController();
