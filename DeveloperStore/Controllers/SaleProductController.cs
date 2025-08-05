@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace DeveloperStore.Controllers
 {
@@ -12,19 +13,28 @@ namespace DeveloperStore.Controllers
     [Route("[controller]")]
     public class SaleProductController : ControllerBase
     {
-        private readonly ILogger<SaleProductController> _logger;
+       //private readonly ILogger<SaleProductController> _logger;
 
         [HttpGet(Name = "GetSale")]
-        public List<Sale> GetSale()
+        public async Task<List<Sale>> GetSale()
         {
             SearchProductService searchProductService = new SearchProductService();
-            var result = searchProductService.GetSale();
+            var result = await searchProductService.GetAllSale();
             return result;
         }
 
-        [HttpPost]
+        [HttpPost(Name = "CreateSale")]
         public async Task<decimal> SaleCreated(List<Product> products, string customer)
         {
+
+
+
+
+
+
+
+
+
             Sale valuesSale;
             DiscountService saleService = new DiscountService();
             if (products.Count < 4)
@@ -56,27 +66,22 @@ namespace DeveloperStore.Controllers
 
             DataBaseSale dataBaseSale = new DataBaseSale();
             dataBaseSale.Input(sale);
-
             return valuesSale.Discount;
         }
 
-        [HttpPut]
-        public Sale SaleModified(string id)
+        [HttpPut("SaleModified/{id}")]
+        public async Task<Sale> SaleModified(string id)
         {
             DataBaseSale dataBaseSale = new DataBaseSale();
-            return dataBaseSale.UpDate(id);
-
-            //return valuesSale.Discount;
+            return await dataBaseSale.UpDate(id);            
         }
 
 
-        [HttpPut]
-        public Sale SaleCancelled(string id)
+        [HttpPut("SaleCancell/{id}")]
+        public async Task<Sale> SaleCancelled(string id)
         {
             DataBaseSale dataBaseSale = new DataBaseSale();
-            return dataBaseSale.SaleCancelled(id);
-
-            //return valuesSale.Discount;
+            return await dataBaseSale.SaleCancelled(id);           
         }
 
     }

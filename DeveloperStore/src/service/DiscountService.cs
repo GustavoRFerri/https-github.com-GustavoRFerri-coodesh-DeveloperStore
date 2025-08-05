@@ -5,11 +5,18 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DeveloperStore.src.service
-{
+{    
+    public enum PercentualDiscount
+    {
+        TenPercent = 10,
+        TwentyPercent = 20
+    }
+
+
     public class DiscountService : IDiscountService
     {
-        decimal discount = 0;
-        public decimal totalValue = 0;
+        private decimal discount = 0;
+        private decimal totalValue = 0;
 
         public Sale DiscountAboveFourProducts(List<Product> saleProduct)
         {
@@ -56,7 +63,7 @@ namespace DeveloperStore.src.service
             if (countItems >= 10 && countItems <= 20)
             {
                 totalValue = SumValues(saleProduct);
-                discount = Apply20PercDiscount(totalValue);
+                discount = ApplyTwentyPercDiscount(totalValue);
             }            
             
             var saleTotalDisc = new Sale
@@ -82,14 +89,14 @@ namespace DeveloperStore.src.service
 
         public decimal ApplyDezPercDiscount(decimal totalValue)
         {
-            decimal valueDiscount = 10;
+            decimal valueDiscount =(decimal)PercentualDiscount.TenPercent;
             decimal totalValueDiscount = (totalValue * valueDiscount) / 100;
             return totalValue - totalValueDiscount;
         }
 
-        public decimal Apply20PercDiscount(decimal totalValue)
+        public decimal ApplyTwentyPercDiscount(decimal totalValue)
         {
-            decimal valueDiscount = 20;
+            decimal valueDiscount = (decimal)PercentualDiscount.TwentyPercent;
             decimal totalValueDiscount = (totalValue * valueDiscount) / 100;
             return totalValue - totalValueDiscount;
         }

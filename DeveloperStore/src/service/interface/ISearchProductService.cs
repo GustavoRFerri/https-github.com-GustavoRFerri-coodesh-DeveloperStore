@@ -4,6 +4,6 @@ namespace DeveloperStore.src.service.@interface
 {
     public interface ISearchProductService
     {
-        public List<Sale> GetSale();
+        Task<List<Sale>> GetAllSale();
     }
 }

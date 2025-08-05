@@ -15,13 +15,13 @@ namespace TestDeveloperStore
 
         [Theory]
         [InlineData("68912a3fc3a9d6526c0bf901")]
-        public void Test_Change_Sale(string id)
+        public async Task Test_Change_Sale(string id)
         {
             // Given           
 
             // when
             SaleProductController saleProductController = new SaleProductController();
-            Sale sale = saleProductController.SaleModified(id);
+            Sale sale = await saleProductController.SaleModified(id);
 
             //DiscountService discountService = new DiscountService();
             //decimal discountFourProducts = discountService.DiscountAboveFourProducts(listProduct);
@@ -32,13 +32,14 @@ namespace TestDeveloperStore
 
         [Theory]
         [InlineData("68912f04c3a9d6526c0bf907")]
-        public void Test_Cancel_Sale(string id)
+        [InlineData("68916a1cf0443c3df837c43e")]
+        public async Task Test_Cancell_Sale(string id)
         {
             // Given
 
             // when
             SaleProductController saleProductController = new SaleProductController();
-            Sale sale = saleProductController.SaleCancelled(id);
+            Sale sale = await saleProductController.SaleCancelled(id);
 
             //DiscountService discountService = new DiscountService();
             //decimal discountFourProducts = discountService.DiscountAboveFourProducts(listProduct);

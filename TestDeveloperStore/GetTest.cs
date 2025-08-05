@@ -12,10 +12,10 @@ namespace TestDeveloperStore
     public class GetTest
     {
         [Fact]    
-        public void GetData()
+        public async Task GetData()
         {
             SaleProductController saleProductController = new SaleProductController();
-            List<Sale> lProducts = saleProductController.GetSale();
+            List<Sale> lProducts = await saleProductController.GetSale();
 
             // Then
             Assert.NotEmpty(lProducts);

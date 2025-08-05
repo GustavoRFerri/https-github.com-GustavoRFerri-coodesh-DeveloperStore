@@ -21,7 +21,7 @@ namespace TestDeveloperStore
             {
                 var Sale = new Product
                 {
-                    Kind = "XCV",
+                    Kind = "Shoes",
                     Price = 10
                 };
                 listProduct.Add(Sale);
@@ -35,7 +35,7 @@ namespace TestDeveloperStore
             //decimal discountFourProducts = discountService.DiscountAboveFourProducts(listProduct);
 
             // then
-            Assert.Equal(81, discountFourProducts);
+            Assert.Equal(45, discountFourProducts);
         }
 
         [Theory]
@@ -47,7 +47,7 @@ namespace TestDeveloperStore
             {
                 var Sale = new Product
                 {
-                    Kind = "XCV",
+                    Kind = "Computer",
                     Price = 10
                 };
                 listProduct.Add(Sale);
@@ -74,7 +74,7 @@ namespace TestDeveloperStore
             {
                 var sale = new Product
                 {
-                    Kind = "XCV",
+                    Kind = "Bag",
                     Price = 10
                 };
                 listProduct.Add(sale);

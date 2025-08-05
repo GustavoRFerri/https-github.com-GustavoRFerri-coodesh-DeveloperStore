@@ -1,35 +1,27 @@
 ﻿using DeveloperStore.src.Domain;
+using DeveloperStore.src.repositories;
 using DeveloperStore.src.service.@interface;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Collections;
+using System.Threading.Tasks;
 
 namespace DeveloperStore.src.service
 {
     public class SearchProductService : ISearchProductService
     {
-        public List<Sale> GetSale()
+
+       DataBaseSale dataSale = new DataBaseSale();    
+
+
+
+        public async Task<List<Sale>> GetAllSale()
         {
-            var connectionString = "mongodb://localhost:27017";
-            var client = new MongoClient(connectionString);
-
-            // Acessar banco e coleção
-            var database = client.GetDatabase("Sale");
-            var colecao = database.GetCollection<Sale>("Product");
-
-            List<Sale> Sle = colecao.Find(new BsonDocument()).ToList();
-            //foreach (var prod in Sle)
-            //{
-            //    Console.WriteLine($"Produto: {prod.Kind} - R$ {prod.Price}");
-            //}
-
-            if (Sle is not null)
-            {
-                return Sle;
-            }
-            else
-            {
-                return new List<Sale>();
-            }            
+          
+            List<Sale> sales = await dataSale.GetSale();
+            return sales;
         }
+
+        
     }
 }

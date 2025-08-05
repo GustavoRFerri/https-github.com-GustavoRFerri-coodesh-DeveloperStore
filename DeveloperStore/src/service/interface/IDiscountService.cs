@@ -8,6 +8,6 @@ namespace DeveloperStore.src.service.@interface
         Sale DiscountBeteween_10_20_Products(List<Product> saleProduct);
         decimal SumValues(List<Product> saleProduct);
         decimal ApplyDezPercDiscount(decimal totalValue);
-        decimal Apply20PercDiscount(decimal totalValue);
+        decimal ApplyTwentyPercDiscount(decimal totalValue);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DeveloperStore.src.Domain;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Threading.Tasks;
 
 namespace DeveloperStore.src.repositories
 {
@@ -29,30 +30,13 @@ namespace DeveloperStore.src.repositories
             {
                 return new List<Sale>();
             }
-        }
-
-
-        //public void Input(Sale sale)
-        //{
-        //    try
-        //    {
-        //        _colecao.InsertOne(sale);
-        //        //_colecao.UpdateOne
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ;
-
-        //    }
-
-        //}
+        }      
 
         public void Input(Sale sale)
         {
             try
             {
-                 _colecao.InsertOne(sale);
-                
+                _colecao.InsertOne(sale);                
             }
             catch (Exception ex)
             {
@@ -61,27 +45,29 @@ namespace DeveloperStore.src.repositories
         }
 
 
-        public Sale UpDate(string id)
+        public async Task<Sale> UpDate(string id)
         {
             try
             {
-                var prod = _colecao.Find(filter:sale => sale._id == id).FirstOrDefault();
+                var prod = _colecao.Find(filter: sale => sale._id == id).FirstOrDefault();
                 prod.Discount = 3300;
-                _colecao.ReplaceOne(filter:sale => prod._id == sale._id,prod );
+                _colecao.ReplaceOne(filter: sale => prod._id == sale._id, prod);
 
-                Sale sale =  _colecao.Find(filter: sale => sale._id == id).FirstOrDefault();
+                Sale prodChanged = await _colecao.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
 
-                return sale;
+                return prodChanged;
             }
             catch (Exception ex)
             {
-                Sale sale = new Sale();
-                return sale;
+               
+               
 
             }
+            Sale sale = new Sale();
+           return sale;
         }
 
-        public Sale SaleCancelled(string id)
+        public async Task<Sale> SaleCancelled(string id)
         {
             try
             {
@@ -89,7 +75,7 @@ namespace DeveloperStore.src.repositories
                 prod.Cancelled = true;
                 _colecao.ReplaceOne(filter: sale => prod._id == sale._id, prod);
 
-                Sale sale = _colecao.Find(filter: sale => sale._id == id).FirstOrDefault();
+                Sale sale = await _colecao.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
 
                 return sale;
             }
@@ -97,9 +83,9 @@ namespace DeveloperStore.src.repositories
             {
                 Sale sale = new Sale();
                 return sale;
-
             }
 
+         
         }
 
    
