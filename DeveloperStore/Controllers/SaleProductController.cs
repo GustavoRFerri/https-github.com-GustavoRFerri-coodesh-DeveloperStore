@@ -78,7 +78,7 @@ namespace DeveloperStore.Controllers
             return valuesSale.Discount;
         }
 
-        [HttpPut("SaleModified/{id}")]
+        [HttpPut("SaleModifiedDiscount/{id}")]
         public async Task<Sale> SaleModified(string id, decimal disc)
         {
             return await _dataBaseSale.UpDate(id, disc);
@@ -91,6 +91,12 @@ namespace DeveloperStore.Controllers
             // Cancell the product and the values
             return await _dataBaseSale.SaleCancelled(id);
         }
+
+        //[HttpDelete("Delete/{id}")]
+        //public void Del(string id)
+        //{
+        //    //_dataBaseSale.Delete(id);
+        //}
 
     }
 }

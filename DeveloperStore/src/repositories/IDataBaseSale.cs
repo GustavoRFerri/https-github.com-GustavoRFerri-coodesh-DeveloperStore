@@ -8,5 +8,6 @@ namespace DeveloperStore.src.repositories
         void Input(Sale sale);
         Task<Sale> UpDate(string id, decimal disc);
         Task<Sale> SaleCancelled(string id);
+        Task<Sale> Delete(string id);
     }
 }

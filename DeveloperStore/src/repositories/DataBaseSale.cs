@@ -85,6 +85,26 @@ namespace DeveloperStore.src.repositories
          
         }
 
-   
+
+        public async Task<Sale> Delete(string id)
+        {
+            try
+            {
+                var prod = _collection.Find(filter: sale => sale._id == id).FirstOrDefault();
+                var deleteResult = _collection.DeleteOne(prod._id);                
+                _collection.DeleteOne(prod._id);
+                Sale sale = await _collection.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
+
+                return sale;
+            }
+            catch (Exception ex)
+            {
+                Sale sale = new Sale();
+                return sale;
+            }
+
+        }
+
+
     }
 }
