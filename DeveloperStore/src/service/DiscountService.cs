@@ -10,13 +10,32 @@ namespace DeveloperStore.src.service
     {
         TenPercent = 10,
         TwentyPercent = 20
-    }
+    }   
 
 
     public class DiscountService : IDiscountService
     {
         private decimal discount = 0;
         private decimal totalValue = 0;
+
+        public DiscountService() { 
+
+
+        
+        }       
+
+        public Sale DiscountBelowFourProducts(List<Product> saleProduct)
+        {
+            totalValue = SumValues(saleProduct);            
+
+            var saleTotalDisc = new Sale
+            {
+                FinalTotal = totalValue,
+                Discount = 0
+            };
+
+            return saleTotalDisc;
+        }
 
         public Sale DiscountAboveFourProducts(List<Product> saleProduct)
         {
@@ -36,7 +55,7 @@ namespace DeveloperStore.src.service
             {
                 totalValue = SumValues(saleProduct);
                 discount = ApplyDezPercDiscount(totalValue);
-            }
+            }           
 
             var saleTotalDisc = new Sale
             {

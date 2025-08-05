@@ -8,19 +8,18 @@ namespace DeveloperStore.src.repositories
     public class DataBaseSale
     {
         private readonly string connectionString = "mongodb://localhost:27017";
-        private readonly IMongoCollection<Sale> _colecao;
-        //private readonly IMongoCollection<Sale> _sale;
+        private readonly IMongoCollection<Sale> _collection;
 
         public DataBaseSale()
         {
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase("Sale");
-            _colecao = database.GetCollection<Sale>("Product");
+            _collection = database.GetCollection<Sale>("Product");
         }
 
         public async Task<List<Sale>> GetSale()
         {
-            List<Sale> Sle = await _colecao.Find(new BsonDocument()).ToListAsync();            
+            List<Sale> Sle = await _collection.Find(new BsonDocument()).ToListAsync();            
 
             if (Sle is not null)
             {
@@ -36,11 +35,11 @@ namespace DeveloperStore.src.repositories
         {
             try
             {
-                _colecao.InsertOne(sale);                
+                _collection.InsertOne(sale);                
             }
             catch (Exception ex)
             {
-                ;
+                
             }
         }
 
@@ -49,33 +48,31 @@ namespace DeveloperStore.src.repositories
         {
             try
             {
-                var prod = _colecao.Find(filter: sale => sale._id == id).FirstOrDefault();
+                var prod = _collection.Find(filter: sale => sale._id == id).FirstOrDefault();
                 prod.Discount = 3300;
-                _colecao.ReplaceOne(filter: sale => prod._id == sale._id, prod);
+                _collection.ReplaceOne(filter: sale => prod._id == sale._id, prod);
 
-                Sale prodChanged = await _colecao.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
+                Sale prodChanged = await _collection.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
 
                 return prodChanged;
             }
             catch (Exception ex)
             {
-               
-               
-
+                Sale sale = new Sale();
+                return sale;
             }
-            Sale sale = new Sale();
-           return sale;
+            
         }
 
         public async Task<Sale> SaleCancelled(string id)
         {
             try
             {
-                var prod = _colecao.Find(filter: sale => sale._id == id).FirstOrDefault();
+                var prod = _collection.Find(filter: sale => sale._id == id).FirstOrDefault();
                 prod.Cancelled = true;
-                _colecao.ReplaceOne(filter: sale => prod._id == sale._id, prod);
+                _collection.ReplaceOne(filter: sale => prod._id == sale._id, prod);
 
-                Sale sale = await _colecao.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
+                Sale sale = await _collection.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
 
                 return sale;
             }

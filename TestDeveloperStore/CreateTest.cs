@@ -13,7 +13,7 @@ namespace TestDeveloperStore
         List<Product> listProduct = new List<Product>();
 
         [Theory]
-        [InlineData(5, "Jhon")]
+        [InlineData(7, "Jhon")]
         public async Task Test_Create_Sale_Above_Four_Product(int quantity, string name)
         {
             // Given
@@ -25,17 +25,18 @@ namespace TestDeveloperStore
                     Price = 10
                 };
                 listProduct.Add(Sale);
-            }            
-          
+            }
+
             // when
             SaleProductController saleProductController = new SaleProductController();
             decimal discountFourProducts = await saleProductController.SaleCreated(listProduct, name);
 
+            // with Service
             //DiscountService discountService = new DiscountService();
             //decimal discountFourProducts = discountService.DiscountAboveFourProducts(listProduct);
 
             // then
-            Assert.Equal(45, discountFourProducts);
+            Assert.Equal(63, discountFourProducts);
         }
 
         [Theory]
@@ -57,6 +58,7 @@ namespace TestDeveloperStore
             SaleProductController saleProductController = new SaleProductController();
             decimal discountFourProducts = await saleProductController.SaleCreated(listProduct, name);
 
+            // with Service
             //DiscountService discountService = new DiscountService();
             //decimal discountFourProducts = discountService.DiscountBeteween_10_20_Products(listProduct);
 

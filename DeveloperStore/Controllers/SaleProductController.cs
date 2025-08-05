@@ -13,7 +13,12 @@ namespace DeveloperStore.Controllers
     [Route("[controller]")]
     public class SaleProductController : ControllerBase
     {
-       //private readonly ILogger<SaleProductController> _logger;
+
+        //private readonly ILogger<SaleProductController> _logger;
+
+        public SaleProductController() {         
+        
+        }
 
         [HttpGet(Name = "GetSale")]
         public async Task<List<Sale>> GetSale()
@@ -21,22 +26,14 @@ namespace DeveloperStore.Controllers
             SearchProductService searchProductService = new SearchProductService();
             var result = await searchProductService.GetAllSale();
             return result;
-        }
+        }      
 
         [HttpPost(Name = "CreateSale")]
         public async Task<decimal> SaleCreated(List<Product> products, string customer)
         {
-
-
-
-
-
-
-
-
-
             Sale valuesSale;
-            DiscountService saleService = new DiscountService();
+            DiscountService saleService = new DiscountService();           
+
             if (products.Count < 4)
             {
                 valuesSale = new Sale()
