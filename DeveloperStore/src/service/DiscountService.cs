@@ -89,7 +89,7 @@ namespace DeveloperStore.src.service
             Sale sale = new Sale
             {
                  Discount = discount,
-                  FinalTotal = totalValue
+                 FinalTotal = totalValue
             };
            
             return sale;           

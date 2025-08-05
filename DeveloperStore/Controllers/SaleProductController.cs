@@ -66,9 +66,12 @@ namespace DeveloperStore.Controllers
                     >= 10 and <= 20 => _discountService.DiscountBeteween_10_20_Products(products),
                 };
             }
+            Guid guid = new Guid();
             valuesSale.Customer = customer;
             valuesSale.Quantities = products.Count;
             valuesSale.Product = products;
+            valuesSale.DateTime = DateTime.Now;
+           
 
             _dataBaseSale.Input(valuesSale);
             return valuesSale.Discount;
