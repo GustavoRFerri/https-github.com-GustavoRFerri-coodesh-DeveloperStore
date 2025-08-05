@@ -19,8 +19,6 @@ namespace DeveloperStore.src.service
         private decimal totalValue = 0;
 
         public DiscountService() { 
-
-
         
         }       
 

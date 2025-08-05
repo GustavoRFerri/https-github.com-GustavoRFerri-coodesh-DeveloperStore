@@ -44,12 +44,12 @@ namespace DeveloperStore.src.repositories
         }
 
 
-        public async Task<Sale> UpDate(string id)
+        public async Task<Sale> UpDate(string id, decimal disc)
         {
             try
             {
                 var prod = _collection.Find(filter: sale => sale._id == id).FirstOrDefault();
-                prod.Discount = 3300;
+                prod.Discount = disc;
                 _collection.ReplaceOne(filter: sale => prod._id == sale._id, prod);
 
                 Sale prodChanged = await _collection.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();

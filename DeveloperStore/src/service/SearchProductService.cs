@@ -10,14 +10,10 @@ namespace DeveloperStore.src.service
 {
     public class SearchProductService : ISearchProductService
     {
-
-       DataBaseSale dataSale = new DataBaseSale();    
-
-
+       DataBaseSale dataSale = new DataBaseSale();  
 
         public async Task<List<Sale>> GetAllSale()
-        {
-          
+        {          
             List<Sale> sales = await dataSale.GetSale();
             return sales;
         }

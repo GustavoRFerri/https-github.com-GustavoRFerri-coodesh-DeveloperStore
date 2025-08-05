@@ -1,6 +1,7 @@
 using DeveloperStore.src.Domain;
 using DeveloperStore.src.repositories;
 using DeveloperStore.src.service;
+using DeveloperStore.src.service.@interface;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -13,42 +14,45 @@ namespace DeveloperStore.Controllers
     [Route("[controller]")]
     public class SaleProductController : ControllerBase
     {
-
         //private readonly ILogger<SaleProductController> _logger;
+        private readonly IDiscountService _discountService;
+        private readonly ISearchProductService _searchProductService;
+        private readonly IDataBaseSale _dataBaseSale;
 
-        public SaleProductController() {         
-        
+        public SaleProductController(IDiscountService discountService, ISearchProductService searchProductService, IDataBaseSale dataBaseSale)
+        {
+            _discountService = discountService;
+            _searchProductService = searchProductService;
+            _dataBaseSale = dataBaseSale;
         }
 
         [HttpGet(Name = "GetSale")]
         public async Task<List<Sale>> GetSale()
         {
-            SearchProductService searchProductService = new SearchProductService();
-            var result = await searchProductService.GetAllSale();
+            var result = await _searchProductService.GetAllSale();
             return result;
-        }      
+        }
 
         [HttpPost(Name = "CreateSale")]
         public async Task<decimal> SaleCreated(List<Product> products, string customer)
         {
             Sale valuesSale;
-            DiscountService saleService = new DiscountService();           
 
             if (products.Count < 4)
             {
                 valuesSale = new Sale()
                 {
                     Discount = 0,
-                    FinalTotal = saleService.SumValues(products)
+                    FinalTotal = _discountService.SumValues(products)
                 };
             }
             else
-            {                
+            {
                 valuesSale = products.Count switch
                 {
-                    > 4 and < 10 => saleService.DiscountAboveFourProducts(products),
-                    >= 10 and <= 20 => saleService.DiscountBeteween_10_20_Products(products),
-                };              
+                    > 4 and < 10 => _discountService.DiscountAboveFourProducts(products),
+                    >= 10 and <= 20 => _discountService.DiscountBeteween_10_20_Products(products),
+                };
             }
 
             var sale = new Sale
@@ -61,24 +65,21 @@ namespace DeveloperStore.Controllers
                 Product = products,
             };
 
-            DataBaseSale dataBaseSale = new DataBaseSale();
-            dataBaseSale.Input(sale);
+            _dataBaseSale.Input(sale);
             return valuesSale.Discount;
         }
 
         [HttpPut("SaleModified/{id}")]
-        public async Task<Sale> SaleModified(string id)
+        public async Task<Sale> SaleModified(string id, decimal disc)
         {
-            DataBaseSale dataBaseSale = new DataBaseSale();
-            return await dataBaseSale.UpDate(id);            
+            return await _dataBaseSale.UpDate(id, disc);
         }
 
 
         [HttpPut("SaleCancell/{id}")]
         public async Task<Sale> SaleCancelled(string id)
         {
-            DataBaseSale dataBaseSale = new DataBaseSale();
-            return await dataBaseSale.SaleCancelled(id);           
+            return await _dataBaseSale.SaleCancelled(id);
         }
 
     }
