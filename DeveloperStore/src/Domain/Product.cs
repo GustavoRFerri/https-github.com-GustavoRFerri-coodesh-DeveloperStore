@@ -8,10 +8,8 @@ namespace DeveloperStore.src.Domain
 
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? _id { get; set; }
-        //public int Id { get; set; }
-        public string Kind { get; set; }
-        //public string Name { get; set; }
+        public string? _id { get; set; }      
+        public string Kind { get; set; }        
         public decimal Price { get; set; }
 
     }

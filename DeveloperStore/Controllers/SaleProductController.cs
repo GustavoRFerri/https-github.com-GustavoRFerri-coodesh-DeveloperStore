@@ -19,7 +19,8 @@ namespace DeveloperStore.Controllers
         private  ISearchProductService _searchProductService;
         private  IDataBaseSale _dataBaseSale; 
 
-        // To do Tests
+        // TO DO TESTS
+
         //public SaleProductController()
         //{
             
