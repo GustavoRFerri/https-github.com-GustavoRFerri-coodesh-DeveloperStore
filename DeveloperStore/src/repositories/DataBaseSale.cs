@@ -39,7 +39,8 @@ namespace DeveloperStore.src.repositories
             }
             catch (Exception ex)
             {
-                
+                // Message error
+                // ex.Message()
             }
         }
 

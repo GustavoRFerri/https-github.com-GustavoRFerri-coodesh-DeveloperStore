@@ -17,9 +17,7 @@ namespace DeveloperStore.Controllers
         //private readonly ILogger<SaleProductController> _logger;
         private  IDiscountService _discountService;
         private  ISearchProductService _searchProductService;
-        private  IDataBaseSale _dataBaseSale;
-  
-
+        private  IDataBaseSale _dataBaseSale; 
 
         // To do Tests
         //public SaleProductController()
@@ -45,11 +43,10 @@ namespace DeveloperStore.Controllers
         [HttpPost(Name = "CreateSale")]
         public async Task<decimal> SaleCreated(List<Product> products, string customer)
         {
-
             ///  TO DO
             ///  Get the quantity all products automatically
             ///  QuantityProductService();
-
+            ///  
 
             Sale valuesSale;          
 

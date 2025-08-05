@@ -12,7 +12,6 @@ namespace DeveloperStore.src.service
         }
         public Sale CountProduct(List<Product> products)
         {            
-
             int count = 0;
             Sale valuesSale = new Sale();
 
