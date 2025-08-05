@@ -5,9 +5,13 @@ namespace DeveloperStore.src.service
 {
     public class QuantityProductService : IQuantityProductService
     {
+        private IDiscountService _discountService;
+
+        public QuantityProductService(IDiscountService discountService) { 
+            _discountService = discountService;
+        }
         public Sale CountProduct(List<Product> products)
-        {
-            DiscountService discountService = new DiscountService();
+        {            
 
             int count = 0;
             Sale valuesSale = new Sale();
@@ -30,9 +34,9 @@ namespace DeveloperStore.src.service
                 count = products.Count(p => p.Kind == item);
                 valuesSale = count switch
                 {
-                    < 4 => discountService.DiscountBelowFourProducts(products),
-                    > 4 and < 10 => discountService.DiscountAboveFourProducts(products),
-                    >= 10 and <= 20 => discountService.DiscountBeteween_10_20_Products(products),
+                   // < 4 => _discountService.DiscountBelowFourProducts(products),
+                   // > 4 and < 10 => _discountService.DiscountAboveFourProducts(products),
+                   // >= 10 and <= 20 => _discountService.DiscountBeteween_10_20_Products(products),
                 };
             }
             return valuesSale;

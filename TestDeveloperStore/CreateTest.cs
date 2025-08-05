@@ -28,15 +28,15 @@ namespace TestDeveloperStore
             }
 
             // when
-            SaleProductController saleProductController = new SaleProductController();
-            decimal discountFourProducts = await saleProductController.SaleCreated(listProduct, name);
+            //SaleProductController saleProductController = new SaleProductController();
+            //decimal discountFourProducts = await saleProductController.SaleCreated(listProduct, name);
 
             // with Service
-            //DiscountService discountService = new DiscountService();
-            //decimal discountFourProducts = discountService.DiscountAboveFourProducts(listProduct);
+            DiscountService discountService = new DiscountService();
+            Sale discountFourProducts = discountService.DiscountAboveFourProducts(listProduct);
 
             // then
-            Assert.Equal(63, discountFourProducts);
+            Assert.Equal(63, discountFourProducts.Discount);
         }
 
         [Theory]
@@ -55,15 +55,15 @@ namespace TestDeveloperStore
             }
 
             // when
-            SaleProductController saleProductController = new SaleProductController();
-            decimal discountFourProducts = await saleProductController.SaleCreated(listProduct, name);
+            //SaleProductController saleProductController = new SaleProductController();
+            //decimal discountFourProducts = await saleProductController.SaleCreated(listProduct, name);
 
             // with Service
-            //DiscountService discountService = new DiscountService();
-            //decimal discountFourProducts = discountService.DiscountBeteween_10_20_Products(listProduct);
+            DiscountService discountService = new DiscountService();
+            Sale discountFourProducts = discountService.DiscountBeteween_10_20_Products(listProduct);
 
             // then
-            Assert.Equal(120, discountFourProducts);
+            Assert.Equal(120, discountFourProducts.Discount);
         }
 
 
@@ -83,11 +83,15 @@ namespace TestDeveloperStore
             }
 
             // when
-            SaleProductController saleProductController = new SaleProductController();
-            decimal discountFourProducts = await saleProductController.SaleCreated(listProduct, name);
-         
+            //SaleProductController saleProductController = new SaleProductController();
+            //decimal discountFourProducts = await saleProductController.SaleCreated(listProduct, name);
+
+            // with Service
+            DiscountService discountService = new DiscountService();
+            Sale discountFourProducts = discountService.DiscountBeteween_10_20_Products(listProduct);
+
             // then
-            Assert.Equal(0, discountFourProducts);
+            Assert.Equal(0, discountFourProducts.Discount);
         }
 
 

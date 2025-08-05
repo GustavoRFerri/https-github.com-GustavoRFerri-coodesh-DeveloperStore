@@ -15,15 +15,24 @@ namespace DeveloperStore.Controllers
     public class SaleProductController : ControllerBase
     {
         //private readonly ILogger<SaleProductController> _logger;
-        private readonly IDiscountService _discountService;
-        private readonly ISearchProductService _searchProductService;
-        private readonly IDataBaseSale _dataBaseSale;
+        private  IDiscountService _discountService;
+        private  ISearchProductService _searchProductService;
+        private  IDataBaseSale _dataBaseSale;
+  
+
+
+        // To do Tests
+        //public SaleProductController()
+        //{
+            
+        //}
 
         public SaleProductController(IDiscountService discountService, ISearchProductService searchProductService, IDataBaseSale dataBaseSale)
         {
             _discountService = discountService;
             _searchProductService = searchProductService;
             _dataBaseSale = dataBaseSale;
+            
         }
 
         [HttpGet(Name = "GetSale")]
@@ -36,11 +45,17 @@ namespace DeveloperStore.Controllers
         [HttpPost(Name = "CreateSale")]
         public async Task<decimal> SaleCreated(List<Product> products, string customer)
         {
-            Sale valuesSale;
+
+            ///  TO DO
+            ///  Get the quantity all products automatically
+            ///  QuantityProductService();
+
+
+            Sale valuesSale;          
 
             if (products.Count < 4)
             {
-                valuesSale = new Sale()
+                valuesSale = new Sale
                 {
                     Discount = 0,
                     FinalTotal = _discountService.SumValues(products)
@@ -54,18 +69,11 @@ namespace DeveloperStore.Controllers
                     >= 10 and <= 20 => _discountService.DiscountBeteween_10_20_Products(products),
                 };
             }
+            valuesSale.Customer = customer;
+            valuesSale.Quantities = products.Count;
+            valuesSale.Product = products;
 
-            var sale = new Sale
-            {
-                Customer = customer,
-                FinalTotal = valuesSale.FinalTotal,
-                Discount = valuesSale.Discount,
-                Quantities = products.Count,
-                //SaleNumber = Guid.NewGuid(),
-                Product = products,
-            };
-
-            _dataBaseSale.Input(sale);
+            _dataBaseSale.Input(valuesSale);
             return valuesSale.Discount;
         }
 
@@ -79,6 +87,7 @@ namespace DeveloperStore.Controllers
         [HttpPut("SaleCancell/{id}")]
         public async Task<Sale> SaleCancelled(string id)
         {
+            // Cancell the product and the values
             return await _dataBaseSale.SaleCancelled(id);
         }
 

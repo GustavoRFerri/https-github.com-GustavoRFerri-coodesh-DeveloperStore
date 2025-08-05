@@ -6,8 +6,6 @@ namespace DeveloperStore.src.service.@interface
     {
         Sale DiscountAboveFourProducts(List<Product> saleProduct);
         Sale DiscountBeteween_10_20_Products(List<Product> saleProduct);
-        decimal SumValues(List<Product> saleProduct);
-        decimal ApplyDezPercDiscount(decimal totalValue);
-        decimal ApplyTwentyPercDiscount(decimal totalValue);
+        decimal SumValues(List<Product> saleProduct);       
     }
 }

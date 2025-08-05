@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DeveloperStore.src.repositories
 {
-    public class DataBaseSale
+    public class DataBaseSale : IDataBaseSale
     {
         private readonly string connectionString = "mongodb://localhost:27017";
         private readonly IMongoCollection<Sale> _collection;
@@ -70,8 +70,7 @@ namespace DeveloperStore.src.repositories
             {
                 var prod = _collection.Find(filter: sale => sale._id == id).FirstOrDefault();
                 prod.Cancelled = true;
-                _collection.ReplaceOne(filter: sale => prod._id == sale._id, prod);
-
+                _collection.ReplaceOne(filter: sale => prod._id == sale._id, prod);                
                 Sale sale = await _collection.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
 
                 return sale;

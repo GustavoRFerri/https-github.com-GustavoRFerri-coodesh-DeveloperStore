@@ -1,4 +1,8 @@
 
+using DeveloperStore.src.repositories;
+using DeveloperStore.src.service;
+using DeveloperStore.src.service.@interface;
+
 namespace DeveloperStore
 {
     public class Program
@@ -10,6 +14,9 @@ namespace DeveloperStore
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddScoped<IDiscountService,DiscountService>();
+            builder.Services.AddScoped<IDataBaseSale,DataBaseSale>();
+            builder.Services.AddScoped<ISearchProductService, SearchProductService>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
