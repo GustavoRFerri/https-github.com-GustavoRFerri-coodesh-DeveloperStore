@@ -11,6 +11,7 @@ namespace DeveloperStore.src.Domain
         public string? _id { get; set; }      
         public string Kind { get; set; }        
         public decimal Price { get; set; }
-
+        
+        
     }
 }

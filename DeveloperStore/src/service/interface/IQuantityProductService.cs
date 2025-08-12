@@ -1,9 +1,10 @@
 ﻿using DeveloperStore.src.Domain;
+using DeveloperStore.src.Domain.Dto;
 
 namespace DeveloperStore.src.service.@interface
 {
-    interface IQuantityProductService
+    public interface IQuantityProductService
     {
-        public Sale CountProduct(List<Product> products);
+        Sale CountProduct(List<Product> products, string name);
     }
 }

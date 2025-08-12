@@ -50,7 +50,7 @@ namespace DeveloperStore.src.repositories
             try
             {
                 var prod = _collection.Find(filter: sale => sale._id == id).FirstOrDefault();
-                prod.Discount = disc;
+                prod.FinalDiscount = disc;
                 _collection.ReplaceOne(filter: sale => prod._id == sale._id, prod);
 
                 Sale prodChanged = await _collection.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();

@@ -14,24 +14,25 @@ namespace DeveloperStore.Controllers
     [Route("[controller]")]
     public class SaleProductController : ControllerBase
     {
-        //private readonly ILogger<SaleProductController> _logger;
-        private  IDiscountService _discountService;
+        private readonly ILogger<SaleProductController> _logger;
+       
         private  ISearchProductService _searchProductService;
         private  IDataBaseSale _dataBaseSale; 
+        private IQuantityProductService _quantityProductService;
 
         // TO DO TESTS
 
         //public SaleProductController()
         //{
-            
+
         //}
 
-        public SaleProductController(IDiscountService discountService, ISearchProductService searchProductService, IDataBaseSale dataBaseSale)
+        public SaleProductController(ILogger<SaleProductController> logger, IQuantityProductService quantityProductService, ISearchProductService searchProductService, IDataBaseSale dataBaseSale)
         {
-            _discountService = discountService;
+            _logger = logger;
+            _quantityProductService = quantityProductService;
             _searchProductService = searchProductService;
             _dataBaseSale = dataBaseSale;
-            
         }
 
         [HttpGet(Name = "GetSale")]
@@ -42,40 +43,40 @@ namespace DeveloperStore.Controllers
         }
 
         [HttpPost(Name = "CreateSale")]
-        public async Task<decimal> SaleCreated(List<Product> products, string customer)
+        public async Task<Sale> SaleCreated(List<Product> products, string customer)
         {
             ///  TO DO
             ///  Get the quantity all products automatically
             ///  QuantityProductService();
             ///  
 
-            Sale valuesSale;          
+            _logger.LogInformation("INICIANDO Creating of Sale ");
 
-            if (products.Count < 4)
-            {
-                valuesSale = new Sale
-                {
-                    Discount = 0,
-                    FinalTotal = _discountService.SumValues(products)
-                };
-            }
-            else
-            {
-                valuesSale = products.Count switch
-                {
-                    > 4 and < 10 => _discountService.DiscountAboveFourProducts(products),
-                    >= 10 and <= 20 => _discountService.DiscountBeteween_10_20_Products(products),
-                };
-            }
-            Guid guid = new Guid();
-            valuesSale.Customer = customer;
-            valuesSale.Quantities = products.Count;
-            valuesSale.Product = products;
-            valuesSale.DateTime = DateTime.Now;
-           
-
+            Sale valuesSale =  _quantityProductService.CountProduct(products,customer);
+            DataBaseSale _dataBaseSale = new DataBaseSale();
             _dataBaseSale.Input(valuesSale);
-            return valuesSale.Discount;
+            return valuesSale;
+            // Sale valuesSale;          
+
+            //if (products.Count < 4)
+            //{
+            //    valuesSale = new Sale
+            //    {
+            //        FinalDiscount = 0,
+            //        //FinalTotal = _discountService.SumValues(products)
+            //    };
+            //}
+            //else
+            //{
+            //    valuesSale = products.Count switch
+            //    {
+            //       // > 4 and < 10 => _discountService.DiscountAboveFourProducts(products),
+            //       // >= 10 and <= 20 => _discountService.DiscountBeteween_10_20_Products(products),
+            //    };
+            //}
+            //Guid guid = new Guid();
+            //valuesSale.Customer = customer;
+            //valuesSale.DateTime = DateTime.Now;
         }
 
         [HttpPut("SaleModifiedDiscount/{id}")]

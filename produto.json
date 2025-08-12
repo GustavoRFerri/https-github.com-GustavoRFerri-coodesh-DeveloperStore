@@ -1,0 +1,39 @@
+{
+  "_id": null,
+  "DateTime": "2025-08-06T18:30:03.9264292-03:00",
+  "Customer": "igor",
+  "FinalQuantities": 53,
+  "FinalDiscount": 1278,
+  "FinalTotal": 1575,
+  "Cancelled": false,
+  "ProductDTO": [
+    {
+      "Kind": "Computer",
+      "EachQuantity": 14,
+      "EachPrice": 50,
+      "TotalEachPrice": 700,
+      "EachDiscount": 560
+    },
+    {
+      "Kind": "Shoes",
+      "EachQuantity": 6,
+      "EachPrice": 30,
+      "TotalEachPrice": 180,
+      "EachDiscount": 162
+    },
+    {
+      "Kind": "Bag",
+      "EachQuantity": 13,
+      "EachPrice": 15,
+      "TotalEachPrice": 195,
+      "EachDiscount": 156
+    },
+    {
+      "Kind": "Gloves",
+      "EachQuantity": 20,
+      "EachPrice": 25,
+      "TotalEachPrice": 500,
+      "EachDiscount": 400
+    }
+  ]
+}

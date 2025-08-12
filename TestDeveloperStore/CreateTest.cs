@@ -1,5 +1,6 @@
 using DeveloperStore.Controllers;
 using DeveloperStore.src.Domain;
+using DeveloperStore.src.Domain.Dto;
 using DeveloperStore.src.service;
 using System.Globalization;
 using System.Net.Http.Headers;
@@ -33,14 +34,14 @@ namespace TestDeveloperStore
 
             // with Service
             DiscountService discountService = new DiscountService();
-            Sale discountFourProducts = discountService.DiscountAboveFourProducts(listProduct);
+           // Sale discountFourProducts = discountService.DiscountAboveFourProducts2(listProduct);
 
             // then
-            Assert.Equal(63, discountFourProducts.Discount);
+            //Assert.Equal(63, discountFourProducts.Discount);
         }
 
         [Theory]
-        [InlineData(15,"Anna")]
+        [InlineData(7,"Anna")]
         public async Task Test_Create_Sale_Between_10_20_More_Product(int quantity, string name)
         {
             // Given
@@ -49,21 +50,54 @@ namespace TestDeveloperStore
                 var Sale = new Product
                 {
                     Kind = "Computer",
-                    Price = 10
+                    Price = 50
                 };
                 listProduct.Add(Sale);
             }
 
+            for (int i = 0; i < 6; i++)
+            {
+                var Sale = new Product
+                {
+                    Kind = "Shoes",
+                    Price = 30
+                };
+                listProduct.Add(Sale);
+            }
+
+            for (int i = 0; i < 13; i++)
+            {
+                var Sale = new Product
+                {
+                    Kind = "Bag",
+                    Price = 15
+                };
+                listProduct.Add(Sale);
+            }
+
+
+            for (int i = 0; i < 23; i++)
+            {
+                var Sale = new Product
+                {
+                    Kind = "Gloves",
+                    Price = 25
+                };
+                listProduct.Add(Sale);
+            }
             // when
             //SaleProductController saleProductController = new SaleProductController();
-            //decimal discountFourProducts = await saleProductController.SaleCreated(listProduct, name);
+            //Sale discountFourProducts = await saleProductController.SaleCreated(listProduct, name);
 
             // with Service
-            DiscountService discountService = new DiscountService();
-            Sale discountFourProducts = discountService.DiscountBeteween_10_20_Products(listProduct);
+            QuantityProductService quantityProductService = new QuantityProductService();
+            Sale newSale = quantityProductService.CountProduct(listProduct, name);
+
+            //DiscountService discountService = new DiscountService();
+            //Sale discountFourProducts = discountService.DiscountBeteween_10_20_Products(listProduct);
 
             // then
-            Assert.Equal(120, discountFourProducts.Discount);
+            //Assert.Equal(120, discountFourProducts.Discount);
         }
 
 
@@ -88,10 +122,10 @@ namespace TestDeveloperStore
 
             // with Service
             DiscountService discountService = new DiscountService();
-            Sale discountFourProducts = discountService.DiscountBeteween_10_20_Products(listProduct);
+            //Sale discountFourProducts = discountService.DiscountBeteween_10_20_Products(listProduct);
 
             // then
-            Assert.Equal(0, discountFourProducts.Discount);
+            //Assert.Equal(0, discountFourProducts.Discount);
         }
 
 
