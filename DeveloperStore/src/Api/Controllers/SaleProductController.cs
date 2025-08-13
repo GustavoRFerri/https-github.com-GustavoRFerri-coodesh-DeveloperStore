@@ -1,14 +1,12 @@
-using DeveloperStore.src.Domain;
-using DeveloperStore.src.repositories;
-using DeveloperStore.src.service;
-using DeveloperStore.src.service.@interface;
+using DeveloperStore.src.Domain.entities;
+using DeveloperStore.src.infrastructure.repositories;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
 
-namespace DeveloperStore.Controllers
+namespace DeveloperStore.src.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -36,14 +34,14 @@ namespace DeveloperStore.Controllers
         }
 
         [HttpGet(Name = "GetSale")]
-        public async Task<List<Sale>> GetSale()
+        public async Task<IActionResult> GetSale()
         {
             var result = await _searchProductService.GetAllSale();
-            return result;
+            return Ok(result);
         }
 
         [HttpPost(Name = "CreateSale")]
-        public async Task<Sale> SaleCreated(List<Product> products, string customer)
+        public async Task<IActionResult> SaleCreated(List<Product> products, string customer)
         {
             ///  TO DO
             ///  Get the quantity all products automatically
@@ -54,43 +52,23 @@ namespace DeveloperStore.Controllers
 
             Sale valuesSale =  _quantityProductService.CountProduct(products,customer);
             DataBaseSale _dataBaseSale = new DataBaseSale();
-            _dataBaseSale.Input(valuesSale);
-            return valuesSale;
-            // Sale valuesSale;          
 
-            //if (products.Count < 4)
-            //{
-            //    valuesSale = new Sale
-            //    {
-            //        FinalDiscount = 0,
-            //        //FinalTotal = _discountService.SumValues(products)
-            //    };
-            //}
-            //else
-            //{
-            //    valuesSale = products.Count switch
-            //    {
-            //       // > 4 and < 10 => _discountService.DiscountAboveFourProducts(products),
-            //       // >= 10 and <= 20 => _discountService.DiscountBeteween_10_20_Products(products),
-            //    };
-            //}
-            //Guid guid = new Guid();
-            //valuesSale.Customer = customer;
-            //valuesSale.DateTime = DateTime.Now;
+            _dataBaseSale.Input(valuesSale);
+            return CreatedAtAction(nameof(GetSale), new { id = valuesSale._id }, valuesSale);      
         }
 
         [HttpPut("SaleModifiedDiscount/{id}")]
-        public async Task<Sale> SaleModified(string id, decimal disc)
+        public async Task<IActionResult> SaleModified(string id, decimal disc)
         {
-            return await _dataBaseSale.UpDate(id, disc);
+            return Ok(await _dataBaseSale.UpDate(id, disc));
         }
 
 
         [HttpPut("SaleCancell/{id}")]
-        public async Task<Sale> SaleCancelled(string id)
+        public async Task<IActionResult> SaleCancelled(string id)
         {
             // Cancell the product and the values
-            return await _dataBaseSale.SaleCancelled(id);
+            return Ok(await _dataBaseSale.SaleCancelled(id));
         }
 
         //[HttpDelete("Delete/{id}")]

@@ -1,6 +1,6 @@
-﻿using DeveloperStore.src.Domain;
+﻿using DeveloperStore.src.Domain.entities;
 
-namespace DeveloperStore.src.repositories
+namespace DeveloperStore.src.infrastructure.repositories
 {
     public interface IDataBaseSale
     {

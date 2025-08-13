@@ -1,4 +1,4 @@
-﻿namespace DeveloperStore.src.Domain.Dto
+﻿namespace DeveloperStore.src.Application.Dto
 {
     public class ProductDTO
     {

@@ -1,23 +1,20 @@
-﻿using DeveloperStore.src.Domain;
-using DeveloperStore.src.repositories;
-using DeveloperStore.src.service.@interface;
+﻿using DeveloperStore.src.Domain.entities;
+using DeveloperStore.src.infrastructure.repositories;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Collections;
 using System.Threading.Tasks;
 
-namespace DeveloperStore.src.service
+namespace DeveloperStore.src.Application.service
 {
     public class SearchProductService : ISearchProductService
     {
-       DataBaseSale dataSale = new DataBaseSale();  
+       DataBaseSale dataSale = new DataBaseSale();
 
         public async Task<List<Sale>> GetAllSale()
         {          
             List<Sale> sales = await dataSale.GetSale();
             return sales;
-        }
-
-        
+        }        
     }
 }

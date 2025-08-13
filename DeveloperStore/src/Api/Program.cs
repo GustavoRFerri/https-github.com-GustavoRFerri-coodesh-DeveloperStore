@@ -1,16 +1,13 @@
+using DeveloperStore.src.Application.service;
+using DeveloperStore.src.infrastructure.repositories;
 
-using DeveloperStore.src.repositories;
-using DeveloperStore.src.service;
-using DeveloperStore.src.service.@interface;
-
-namespace DeveloperStore
+namespace DeveloperStore.src.Api
 {
     public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
             // Add services to the container.
 
             builder.Services.AddControllers();

@@ -1,7 +1,6 @@
-using DeveloperStore.Controllers;
-using DeveloperStore.src.Domain;
-using DeveloperStore.src.Domain.Dto;
-using DeveloperStore.src.service;
+
+using DeveloperStore.src.Application.service;
+using DeveloperStore.src.Domain.entities;
 using System.Globalization;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;

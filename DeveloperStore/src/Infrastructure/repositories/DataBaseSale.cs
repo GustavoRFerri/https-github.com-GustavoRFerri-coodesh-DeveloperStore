@@ -1,9 +1,9 @@
-﻿using DeveloperStore.src.Domain;
+﻿using DeveloperStore.src.Domain.entities;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Threading.Tasks;
 
-namespace DeveloperStore.src.repositories
+namespace DeveloperStore.src.infrastructure.repositories
 {
     public class DataBaseSale : IDataBaseSale
     {

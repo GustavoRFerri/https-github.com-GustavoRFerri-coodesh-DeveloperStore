@@ -1,13 +1,10 @@
-﻿using DeveloperStore.Controllers;
-using DeveloperStore.src.Domain;
-using DeveloperStore.src.Domain.Dto;
-using DeveloperStore.src.repositories;
-using DeveloperStore.src.service.@interface;
+﻿using DeveloperStore.src.Application.Dto;
+using DeveloperStore.src.Domain.entities;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace DeveloperStore.src.service
+namespace DeveloperStore.src.Application.service
 {
     public class QuantityProductService : IQuantityProductService
     {

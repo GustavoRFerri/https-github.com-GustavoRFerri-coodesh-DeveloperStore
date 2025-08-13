@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace DeveloperStore.src.Domain
+namespace DeveloperStore.src.Domain.entities
 {
     public class Product
     {

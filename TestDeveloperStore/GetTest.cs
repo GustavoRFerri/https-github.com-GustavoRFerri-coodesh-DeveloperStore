@@ -1,6 +1,5 @@
-﻿using DeveloperStore.Controllers;
-using DeveloperStore.src.Domain;
-using DeveloperStore.src.service;
+﻿using DeveloperStore.src.Application.service;
+using DeveloperStore.src.Domain.entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,8 +1,8 @@
-﻿using DeveloperStore.src.Domain.Dto;
+﻿using DeveloperStore.src.Application.Dto;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace DeveloperStore.src.Domain
+namespace DeveloperStore.src.Domain.entities
 {
     public class Sale
     {
@@ -10,7 +10,7 @@ namespace DeveloperStore.src.Domain
         [BsonRepresentation(BsonType.ObjectId)]
         public string? _id { get; set; }
         public DateTime DateTime { get; set; }
-        //public Guid SaleNumber { get; set; }
+        // public Guid SaleNumber { get; set; }
         public string Customer { get; set; }
         public int FinalQuantities { get; set; }
         public decimal FinalDiscount { get; set; }
