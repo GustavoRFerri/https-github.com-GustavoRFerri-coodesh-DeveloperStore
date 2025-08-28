@@ -1,4 +1,5 @@
 using DeveloperStore.src.Application.service;
+using DeveloperStore.src.Application.service.@interface;
 using DeveloperStore.src.infrastructure.repositories;
 
 namespace DeveloperStore.src.Api

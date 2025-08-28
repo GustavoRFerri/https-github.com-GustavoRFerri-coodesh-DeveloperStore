@@ -1,35 +1,35 @@
 {
   "_id": null,
-  "DateTime": "2025-08-13T15:20:56.7841353-03:00",
-  "Customer": "Jhon",
-  "FinalQuantities": 53,
-  "FinalDiscount": 1278,
-  "FinalTotal": 1575,
+  "DateTime": "2025-08-25T15:13:12.0767474-03:00",
+  "Customer": "Anna",
+  "FinalQuantities": 43,
+  "FinalDiscount": 0,
+  "FinalTotal": 1135,
   "Cancelled": false,
   "ProductDTO": [
     {
       "Kind": "Computer",
-      "EachPrice": 700,
-      "EachQuantity": 14,
-      "EachDiscount": 560
+      "EachPrice": 350,
+      "EachQuantity": 7,
+      "EachDiscount": 0
     },
     {
       "Kind": "Shoes",
-      "EachPrice": 180,
-      "EachQuantity": 6,
-      "EachDiscount": 162
+      "EachPrice": 90,
+      "EachQuantity": 3,
+      "EachDiscount": 0
     },
     {
       "Kind": "Bag",
       "EachPrice": 195,
       "EachQuantity": 13,
-      "EachDiscount": 156
+      "EachDiscount": 0
     },
     {
       "Kind": "Gloves",
       "EachPrice": 500,
       "EachQuantity": 20,
-      "EachDiscount": 400
+      "EachDiscount": 0
     }
   ]
 }

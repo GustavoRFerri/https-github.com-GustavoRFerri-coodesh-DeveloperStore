@@ -8,7 +8,7 @@ namespace DeveloperStore.src.Domain.entities
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? _id { get; set; }
+        public Guid Id { get; set; }
         public DateTime DateTime { get; set; }
         // public Guid SaleNumber { get; set; }
         public string Customer { get; set; }

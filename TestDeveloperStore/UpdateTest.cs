@@ -1,4 +1,5 @@
-﻿using DeveloperStore.src.Domain.entities;
+﻿using ProductSale.Application.service;
+using ProductSale.Core.entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,10 +36,13 @@ namespace TestDeveloperStore
 
             // when
             //SaleProductController saleProductController = new SaleProductController();
-            //Sale sale = await saleProductController.SaleCancelled(id);
+            QuantityProductService quantityProductService = new QuantityProductService();   
+            //ChangeProductService changeProductService = new ChangeProductService();
 
-            //// then
-            //Assert.NotEmpty(sale);
+            //Sale sale = await quantityProductService.CountProductcelled(id);
+
+            // then
+            //Assert.NotEmpty();
         }
     }
 }

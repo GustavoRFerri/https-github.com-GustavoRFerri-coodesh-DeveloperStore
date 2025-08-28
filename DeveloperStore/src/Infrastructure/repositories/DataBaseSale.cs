@@ -49,11 +49,11 @@ namespace DeveloperStore.src.infrastructure.repositories
         {
             try
             {
-                var prod = _collection.Find(filter: sale => sale._id == id).FirstOrDefault();
-                prod.FinalDiscount = disc;
-                _collection.ReplaceOne(filter: sale => prod._id == sale._id, prod);
+                //var prod = _collection.Find(filter: sale => sale._id == id).FirstOrDefault();
+                //prod.FinalDiscount = disc;
+                //_collection.ReplaceOne(filter: sale => prod._id == sale._id, prod);
 
-                Sale prodChanged = await _collection.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
+                Sale prodChanged = new Sale();// await _collection.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
 
                 return prodChanged;
             }
@@ -69,10 +69,10 @@ namespace DeveloperStore.src.infrastructure.repositories
         {
             try
             {
-                var prod = _collection.Find(filter: sale => sale._id == id).FirstOrDefault();
-                prod.Cancelled = true;
-                _collection.ReplaceOne(filter: sale => prod._id == sale._id, prod);                
-                Sale sale = await _collection.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
+            //    var prod = _collection.Find(filter: sale => sale._id == id).FirstOrDefault();
+            //    prod.Cancelled = true;
+            //    _collection.ReplaceOne(filter: sale => prod._id == sale._id, prod);
+                Sale sale = new Sale();// await _collection.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
 
                 return sale;
             }
@@ -90,10 +90,10 @@ namespace DeveloperStore.src.infrastructure.repositories
         {
             try
             {
-                var prod = _collection.Find(filter: sale => sale._id == id).FirstOrDefault();
-                var deleteResult = _collection.DeleteOne(prod._id);                
-                _collection.DeleteOne(prod._id);
-                Sale sale = await _collection.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
+                //var prod = _collection.Find(filter: sale => sale._id == id).FirstOrDefault();
+                //var deleteResult = _collection.DeleteOne(prod._id);                
+                //_collection.DeleteOne(prod._id);
+                Sale sale = new Sale();// await _collection.Find(filter: sale => sale._id == id).FirstOrDefaultAsync();
 
                 return sale;
             }

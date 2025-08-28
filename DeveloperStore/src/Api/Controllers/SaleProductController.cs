@@ -1,3 +1,4 @@
+using DeveloperStore.src.Application.service.@interface;
 using DeveloperStore.src.Domain.entities;
 using DeveloperStore.src.infrastructure.repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -54,7 +55,7 @@ namespace DeveloperStore.src.Api.Controllers
             DataBaseSale _dataBaseSale = new DataBaseSale();
 
             _dataBaseSale.Input(valuesSale);
-            return CreatedAtAction(nameof(GetSale), new { id = valuesSale._id }, valuesSale);      
+            return CreatedAtAction(nameof(GetSale), new { id = valuesSale.Id }, valuesSale);      
         }
 
         [HttpPut("SaleModifiedDiscount/{id}")]

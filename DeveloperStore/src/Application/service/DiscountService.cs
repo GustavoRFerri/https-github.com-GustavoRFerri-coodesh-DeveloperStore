@@ -1,4 +1,6 @@
-﻿namespace DeveloperStore.src.Application.service
+﻿using DeveloperStore.src.Application.service.@interface;
+
+namespace DeveloperStore.src.Application.service
 {
     public enum PercentualDiscount
     {

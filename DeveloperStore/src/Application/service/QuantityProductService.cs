@@ -1,4 +1,5 @@
 ﻿using DeveloperStore.src.Application.Dto;
+using DeveloperStore.src.Application.service.@interface;
 using DeveloperStore.src.Domain.entities;
 using System.Collections.Generic;
 using System.Text.Json;
@@ -33,6 +34,7 @@ namespace DeveloperStore.src.Application.service
 
             // Create the new Sale
             Sale saleNew = new Sale();
+            saleNew.Id = Guid.NewGuid();
             saleNew.ProductDTO = nLIst;
             saleNew.Customer = name;
             saleNew.DateTime = DateTime.Now;
@@ -46,6 +48,10 @@ namespace DeveloperStore.src.Application.service
 
             string caminhoArquivo = "E:\\GUSTAVO\\Repository-Git\\DeveloperStore\\produto.json";
             string json = JsonSerializer.Serialize(saleNew, new JsonSerializerOptions { WriteIndented = true });
+
+            var tete = JsonSerializer.Deserialize<Sale>(json);
+
+
             File.WriteAllText(caminhoArquivo, json);
 
             return saleNew;

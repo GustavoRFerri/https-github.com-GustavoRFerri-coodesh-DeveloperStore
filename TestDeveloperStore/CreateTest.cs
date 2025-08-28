@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace TestDeveloperStore
 {
+
     public class CreateTest
     {
         Sale sale = new Sale();
