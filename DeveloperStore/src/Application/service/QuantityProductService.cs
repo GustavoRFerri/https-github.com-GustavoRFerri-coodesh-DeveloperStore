@@ -94,13 +94,7 @@ namespace DeveloperStore.src.Application.service
             {
                 throw;
             }
-        }
-
-
-       
-
-
-       
+        }    
 
     }
 }
