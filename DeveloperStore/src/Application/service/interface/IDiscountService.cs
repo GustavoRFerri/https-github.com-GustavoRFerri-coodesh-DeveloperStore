@@ -2,7 +2,7 @@
 {
     public interface IDiscountService
     {       
-        decimal ApplyDiscount(int count, decimal eachPrice);        
+        decimal ApplyDiscount(int count, decimal eachPrice);       
             
     }
 }
