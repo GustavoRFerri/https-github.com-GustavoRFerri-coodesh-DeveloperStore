@@ -50,8 +50,6 @@ namespace DeveloperStore.src.Application.service
             string json = JsonSerializer.Serialize(saleNew, new JsonSerializerOptions { WriteIndented = true });
 
             var tete = JsonSerializer.Deserialize<Sale>(json);
-
-
             File.WriteAllText(caminhoArquivo, json);
 
             return saleNew;
@@ -90,7 +88,6 @@ namespace DeveloperStore.src.Application.service
                     };
                     lPrdDto.Add(productDTO);
                 }
-
                 return lPrdDto;
             }
             catch (Exception ex)
